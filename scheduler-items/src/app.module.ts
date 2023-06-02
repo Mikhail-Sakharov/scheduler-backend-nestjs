@@ -7,6 +7,7 @@ import databaseConfig, {getMongoDbConfig} from './config/database.config';
 import {MongooseModule} from '@nestjs/mongoose';
 import envSchema from './env.schema';
 import {ItemModel, ItemSchema} from './item.model';
+import {ItemRepository} from './item.repository';
 
 @Module({
   imports: [
@@ -25,6 +26,6 @@ import {ItemModel, ItemSchema} from './item.model';
     ])
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ItemRepository],
 })
 export class AppModule {}

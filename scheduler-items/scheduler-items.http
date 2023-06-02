@@ -1,0 +1,12 @@
+### СОЗДАНИЕ ЭЛЕМЕНТА
+POST http://localhost:3000/items HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Новый список",
+  "description": "TODO список важных дел",
+  "listsIds": [],
+  "consistsOfItemsIds": [],
+  "deadline": null,
+  "type": "TODO_LIST"
+}

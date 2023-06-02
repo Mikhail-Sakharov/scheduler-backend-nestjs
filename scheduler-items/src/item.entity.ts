@@ -10,6 +10,10 @@ export class ItemEntity implements Item, Entity<Item> {
   public deadline: string;
   public type: ItemType;
 
+  constructor(item: Item) {
+    this.fillEntity(item);
+  }
+
   toObject(): Item {
     return {...this};
   }

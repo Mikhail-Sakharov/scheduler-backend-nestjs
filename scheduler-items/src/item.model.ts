@@ -29,7 +29,7 @@ export class ItemModel extends Document implements Item {
   public consistsOfItemsIds?: string[];
 
   @Prop({
-    required: true
+    default: null
   })
   public deadline: string;
 
