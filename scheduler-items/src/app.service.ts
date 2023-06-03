@@ -11,4 +11,8 @@ export class AppService {
     const itemEntity = new ItemEntity(dto);
     return await this.itemRepository.create(itemEntity);
   }
+
+  public async findMany() {
+    return await this.itemRepository.find();
+  }
 }

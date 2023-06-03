@@ -14,7 +14,8 @@ export class AppController {
   public async createItem(
     @Body() dto: CreateItemDto
   ) {
-    const item = await this.appService.createItem(dto);
-    return fillObject(ItemRdo, item);
+    await this.appService.createItem(dto);
+    const items = await this.appService.findMany();
+    return fillObject(ItemRdo, items);
   }
 }

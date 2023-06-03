@@ -14,6 +14,10 @@ export class ItemRepository implements CRUDRepository<ItemEntity, string, Item> 
     return await this.itemModel.create(item.toObject());
   }
 
+  public async find() {
+    return await this.itemModel.find();
+  }
+
   public async findById(id: string): Promise<Item> {
     return await this.itemModel.findById(id);
   }
