@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Param, Patch, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post} from '@nestjs/common';
 import {AppService} from './app.service';
 import {CreateItemDto} from './dto/create-item.dto';
 import {fillObject} from 'common/helpers';
@@ -38,5 +38,14 @@ export class AppController {
     await this.appService.updateItem(id, dto);
     const items = await this.appService.findMany();
     return fillObject(ItemRdo, items);
+  }
+
+  // УДАЛЕНИЕ ЭЛЕМЕНТА
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  public async deleteItem(
+    @Param('id') id: string
+  ) {
+    return await this.appService.deleteItem(id);
   }
 }

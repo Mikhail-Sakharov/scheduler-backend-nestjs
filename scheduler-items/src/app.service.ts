@@ -25,4 +25,8 @@ export class AppService {
     });
     return await this.itemRepository.update(id, itemEntity);
   }
+
+  public async deleteItem(id: string) {
+    return await this.itemRepository.destroy(id);
+  }
 }
