@@ -8,7 +8,7 @@ import {MongooseModule} from '@nestjs/mongoose';
 import envSchema from './env.schema';
 import {ItemModel, ItemSchema} from './item.model';
 import {ItemRepository} from './item.repository';
-import { ListsModule } from './lists/lists.module';
+import {ListsModule} from './lists/lists.module';
 
 @Module({
   imports: [

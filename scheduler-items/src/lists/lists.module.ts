@@ -3,6 +3,7 @@ import {ListsController} from './lists.controller';
 import {ListsService} from './lists.service';
 import {MongooseModule} from '@nestjs/mongoose';
 import {ListModel, ListSchema} from './list.model';
+import {ListsRepository} from './lists.repository';
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import {ListModel, ListSchema} from './list.model';
     ])
   ],
   controllers: [ListsController],
-  providers: [ListsService]
+  providers: [ListsService, ListsRepository]
 })
 export class ListsModule {}
