@@ -19,4 +19,8 @@ export class ListsService {
     const lists = await this.listsRepository.find();
     return lists;
   }
+
+  public async deleteList(id: string) {
+    await this.listsRepository.destroy(id);
+  }
 }

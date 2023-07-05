@@ -21,3 +21,6 @@ Content-Type: application/json
 
 ### ПОЛУЧЕНИЕ СПИСКА СПИСКОВ
 GET http://localhost:3001/lists HTTP/1.1
+
+### УДАЛЕНИЕ ЛИСТА
+DELETE http://localhost:3001/lists/64a2d4aa9768973391f8ea7e HTTP/1.1

@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post} from '@nestjs/common';
 import {ListsService} from './lists.service';
 import {CreateListDto} from 'src/dto/create-list.dto';
 import {fillObject} from 'common/helpers';
@@ -10,7 +10,7 @@ export class ListsController {
     private readonly listsService: ListsService
   ) {}
 
-  // СОЗДАНИЕ ЛИСТА
+  // СОЗДАНИЕ СПИСКА
   @Post('')
   @HttpCode(HttpStatus.CREATED)
   public async createList(
@@ -27,5 +27,14 @@ export class ListsController {
   public async getLists() {
     const lists = await this.listsService.getLists();
     return fillObject(ListRdo, lists);
+  }
+
+  // УДАЛЕНИЕ СПИСКА
+  @Delete(':id')
+  @HttpCode(HttpStatus.OK)
+  public async deleteList(
+    @Param('id') id: string
+  ) {
+    await this.listsService.deleteList(id);
   }
 }
