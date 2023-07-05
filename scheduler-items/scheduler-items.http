@@ -11,7 +11,9 @@ Content-Type: application/json
   "type": "TODO_LIST"
 }
 
-### СОЗДАНИЕ ЛИСТА
+###=============================================СПИСКИ=============================================
+
+### СОЗДАНИЕ СПИСКА
 POST http://localhost:3001/lists HTTP/1.1
 Content-Type: application/json
 
@@ -22,5 +24,13 @@ Content-Type: application/json
 ### ПОЛУЧЕНИЕ СПИСКА СПИСКОВ
 GET http://localhost:3001/lists HTTP/1.1
 
-### УДАЛЕНИЕ ЛИСТА
+### УДАЛЕНИЕ СПИСКА
 DELETE http://localhost:3001/lists/64a2d4aa9768973391f8ea7e HTTP/1.1
+
+### ОБНОВЛЕНИЕ СПИСКА
+PATCH http://localhost:3001/lists/64a26d3e43a4702cfa1351c7
+Content-Type: application/json
+
+{
+  "title": "qwerty"
+}
