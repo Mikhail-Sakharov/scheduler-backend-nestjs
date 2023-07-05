@@ -4,6 +4,7 @@ import {Item} from './types/item.interface';
 import {ItemModel} from './item.model';
 import {Model} from 'mongoose';
 import {InjectModel} from '@nestjs/mongoose';
+import {GetItemsQuery} from './query/get-items.query';
 
 export class ItemRepository implements CRUDRepository<ItemEntity, string, Item> {
   constructor(
@@ -14,8 +15,14 @@ export class ItemRepository implements CRUDRepository<ItemEntity, string, Item> 
     return await this.itemModel.create(item.toObject());
   }
 
-  public async find() {
-    return await this.itemModel.find();
+  public async find(query?: GetItemsQuery) {
+    const {
+      listsIds
+    } = query;
+
+    return await this.itemModel
+      .find()
+      .where(listsIds ? {listsIds: {$in: listsIds.split(',')}} : {});
   }
 
   public async findById(id: string): Promise<Item> {

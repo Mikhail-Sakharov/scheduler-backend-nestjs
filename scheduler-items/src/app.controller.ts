@@ -1,9 +1,10 @@
-import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query} from '@nestjs/common';
 import {AppService} from './app.service';
 import {CreateItemDto} from './dto/create-item.dto';
 import {fillObject} from 'common/helpers';
 import {ItemRdo} from './rdo/item.rdo';
 import {UpdateItemDto} from './dto/update-item.dto';
+import {GetItemsQuery} from './query/get-items.query';
 
 @Controller('items')
 export class AppController {
@@ -20,11 +21,13 @@ export class AppController {
     return fillObject(ItemRdo, items);
   }
 
-  // ПОЛУЧЕНИЕ СПИСКА
+  // ПОЛУЧЕНИЕ ЭЛЕМЕНТОВ
   @Get('')
   @HttpCode(HttpStatus.OK)
-  public async getItems() {
-    const items = await this.appService.findMany();
+  public async getItems(
+    @Query() query?: GetItemsQuery
+  ) {
+    const items = await this.appService.findMany(query);
     return fillObject(ItemRdo, items);
   }
 

@@ -3,6 +3,7 @@ import {ItemRepository} from './item.repository';
 import {ItemEntity} from './item.entity';
 import {CreateItemDto} from './dto/create-item.dto';
 import {UpdateItemDto} from './dto/update-item.dto';
+import {GetItemsQuery} from './query/get-items.query';
 
 @Injectable()
 export class AppService {
@@ -13,8 +14,8 @@ export class AppService {
     return await this.itemRepository.create(itemEntity);
   }
 
-  public async findMany() {
-    return await this.itemRepository.find();
+  public async findMany(query?: GetItemsQuery) {
+    return await this.itemRepository.find(query);
   }
 
   public async updateItem(id: string, dto: UpdateItemDto) {

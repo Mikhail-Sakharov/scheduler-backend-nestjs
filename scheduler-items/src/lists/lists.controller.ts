@@ -49,6 +49,7 @@ export class ListsController {
     @Param('id') id: string
   ) {
     await this.listsService.deleteList(id);
+    // await this.appService.deleteItems(id); --- удалить все составляющие списка
     const lists = await this.listsService.getLists();
     return fillObject(ListRdo, lists);
   }
