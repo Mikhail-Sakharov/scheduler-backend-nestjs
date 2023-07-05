@@ -49,5 +49,7 @@ export class ListsController {
     @Param('id') id: string
   ) {
     await this.listsService.deleteList(id);
+    const lists = await this.listsService.getLists();
+    return fillObject(ListRdo, lists);
   }
 }
