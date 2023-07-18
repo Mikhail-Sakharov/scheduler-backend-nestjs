@@ -16,9 +16,8 @@ export class AppController {
   public async createItem(
     @Body() dto: CreateItemDto
   ) {
-    await this.appService.createItem(dto);
-    const items = await this.appService.findMany();
-    return fillObject(ItemRdo, items);
+    const item = await this.appService.createItem(dto);
+    return fillObject(ItemRdo, item);
   }
 
   // ПОЛУЧЕНИЕ ЭЛЕМЕНТОВ
@@ -38,9 +37,7 @@ export class AppController {
     @Param('id') id: string,
     @Body() dto: UpdateItemDto
   ) {
-    await this.appService.updateItem(id, dto);
-    const items = await this.appService.findMany();
-    return fillObject(ItemRdo, items);
+    return await this.appService.updateItem(id, dto);
   }
 
   // УДАЛЕНИЕ ЭЛЕМЕНТА
