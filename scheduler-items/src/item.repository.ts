@@ -16,9 +16,7 @@ export class ItemRepository implements CRUDRepository<ItemEntity, string, Item> 
   }
 
   public async find(query?: GetItemsQuery) {
-    const {
-      listsIds
-    } = query;
+    const listsIds = query && query.listsIds ? query.listsIds : null;
 
     return await this.itemModel
       .find()
