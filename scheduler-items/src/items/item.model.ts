@@ -1,7 +1,7 @@
 import {Document} from 'mongoose';
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {ItemType} from './types/item-type.enum';
-import {Item} from './types/item.interface';
+import {Item} from 'src/types/item.interface';
+import {ItemType} from 'src/types/item-type.enum';
 
 @Schema({
   collection: 'items',

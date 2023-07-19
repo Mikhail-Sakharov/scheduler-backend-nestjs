@@ -1,14 +1,14 @@
 import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query} from '@nestjs/common';
-import {AppService} from './app.service';
-import {CreateItemDto} from './dto/create-item.dto';
+import {ItemsService} from './items.service';
+import {CreateItemDto} from 'src/dto/create-item.dto';
 import {fillObject} from 'common/helpers';
-import {ItemRdo} from './rdo/item.rdo';
-import {UpdateItemDto} from './dto/update-item.dto';
-import {GetItemsQuery} from './query/get-items.query';
+import {ItemRdo} from 'src/rdo/item.rdo';
+import {GetItemsQuery} from 'src/query/get-items.query';
+import {UpdateItemDto} from 'src/dto/update-item.dto';
 
 @Controller('items')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class ItemsController {
+  constructor(private readonly itemsService: ItemsService) {}
 
   // СОЗДАНИЕ ЭЛЕМЕНТА
   @Post('')
@@ -16,7 +16,7 @@ export class AppController {
   public async createItem(
     @Body() dto: CreateItemDto
   ) {
-    const item = await this.appService.createItem(dto);
+    const item = await this.itemsService.createItem(dto);
     return fillObject(ItemRdo, item);
   }
 
@@ -26,7 +26,7 @@ export class AppController {
   public async getItems(
     @Query() query?: GetItemsQuery
   ) {
-    const items = await this.appService.findMany(query);
+    const items = await this.itemsService.findMany(query);
     return fillObject(ItemRdo, items);
   }
 
@@ -37,7 +37,7 @@ export class AppController {
     @Param('id') id: string,
     @Body() dto: UpdateItemDto
   ) {
-    return await this.appService.updateItem(id, dto);
+    return await this.itemsService.updateItem(id, dto);
   }
 
   // УДАЛЕНИЕ ЭЛЕМЕНТА
@@ -46,6 +46,5 @@ export class AppController {
   public async deleteItem(
     @Param('id') id: string
   ) {
-    return await this.appService.deleteItem(id);
-  }
-}
+    return await this.itemsService.deleteItem(id);
+  }}

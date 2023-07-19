@@ -1,6 +1,6 @@
-import {Entity} from './types/entity.interface';
-import {ItemType} from './types/item-type.enum';
-import {Item} from './types/item.interface';
+import {Entity} from 'src/types/entity.interface';
+import {ItemType} from 'src/types/item-type.enum';
+import {Item} from 'src/types/item.interface';
 
 export class ItemEntity implements Item, Entity<Item> {
   public title: string;

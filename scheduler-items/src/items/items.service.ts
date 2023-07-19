@@ -1,12 +1,12 @@
 import {Injectable} from '@nestjs/common';
 import {ItemRepository} from './item.repository';
+import {CreateItemDto} from 'src/dto/create-item.dto';
 import {ItemEntity} from './item.entity';
-import {CreateItemDto} from './dto/create-item.dto';
-import {UpdateItemDto} from './dto/update-item.dto';
-import {GetItemsQuery} from './query/get-items.query';
+import {GetItemsQuery} from 'src/query/get-items.query';
+import {UpdateItemDto} from 'src/dto/update-item.dto';
 
 @Injectable()
-export class AppService {
+export class ItemsService {
   constructor(private readonly itemRepository: ItemRepository) {}
 
   public async createItem(dto: CreateItemDto) {
@@ -29,5 +29,4 @@ export class AppService {
 
   public async deleteItem(id: string) {
     return await this.itemRepository.destroy(id);
-  }
-}
+  }}

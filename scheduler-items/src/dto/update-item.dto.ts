@@ -1,4 +1,4 @@
-import {IsOptional, IsString} from 'class-validator';
+import {IsArray, IsOptional, IsString} from 'class-validator';
 
 export class UpdateItemDto {
   @IsString()
@@ -7,9 +7,16 @@ export class UpdateItemDto {
 
   @IsString()
   @IsOptional()
-  public description?: string;
+  public description: string;
 
   @IsString()
   @IsOptional()
   public deadline: string | null;
+
+
+  @IsArray({
+    each: true
+  })
+  @IsOptional()
+  public listsIds: string[];
 }

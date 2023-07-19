@@ -1,14 +1,11 @@
 import {Module} from '@nestjs/common';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
 import {ConfigModule} from '@nestjs/config';
 import {ENV_FILE_PATH} from 'app.constant';
 import databaseConfig, {getMongoDbConfig} from './config/database.config';
 import {MongooseModule} from '@nestjs/mongoose';
 import envSchema from './env.schema';
-import {ItemModel, ItemSchema} from './item.model';
-import {ItemRepository} from './item.repository';
 import {ListsModule} from './lists/lists.module';
+import {ItemsModule} from './items/items.module';
 
 @Module({
   imports: [
@@ -22,12 +19,10 @@ import {ListsModule} from './lists/lists.module';
     MongooseModule.forRootAsync(
       getMongoDbConfig()
     ),
-    MongooseModule.forFeature([
-      {name: ItemModel.name, schema: ItemSchema}
-    ]),
-    ListsModule
+    ListsModule,
+    ItemsModule
   ],
-  controllers: [AppController],
-  providers: [AppService, ItemRepository],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
