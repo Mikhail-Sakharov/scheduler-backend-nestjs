@@ -18,7 +18,7 @@ export class ListsController {
     @Body() dto: CreateListDto
   ) {
     await this.listsService.createList(dto);
-    const lists = await this.listsService.getLists();
+    const lists = await this.listsService.getLists(); // FIXME: нарушен принцип единой ответственности
     return fillObject(ListRdo, lists);
   }
 
@@ -38,7 +38,7 @@ export class ListsController {
     @Body() dto: UpdateListDto
   ) {
     await this.listsService.updateList(id, dto);
-    const lists = await this.listsService.getLists();
+    const lists = await this.listsService.getLists(); // FIXME: нарушен принцип единой ответственности
     return fillObject(ListRdo, lists);
   }
 
@@ -49,8 +49,7 @@ export class ListsController {
     @Param('id') id: string
   ) {
     await this.listsService.deleteList(id);
-    // await this.appService.deleteItems(id); --- удалить все составляющие списка
-    const lists = await this.listsService.getLists();
+    const lists = await this.listsService.getLists(); // FIXME: нарушен принцип единой ответственности
     return fillObject(ListRdo, lists);
   }
 }
