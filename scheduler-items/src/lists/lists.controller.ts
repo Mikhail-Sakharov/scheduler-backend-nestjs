@@ -17,9 +17,8 @@ export class ListsController {
   public async createList(
     @Body() dto: CreateListDto
   ) {
-    await this.listsService.createList(dto);
-    const lists = await this.listsService.getLists(); // FIXME: нарушен принцип единой ответственности
-    return fillObject(ListRdo, lists);
+    const createdList = await this.listsService.createList(dto);
+    return fillObject(ListRdo, createdList);
   }
 
   // ПОЛУЧЕНИЕ СПИСКА СПИСКОВ
