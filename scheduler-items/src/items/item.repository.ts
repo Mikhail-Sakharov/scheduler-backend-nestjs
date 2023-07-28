@@ -17,10 +17,17 @@ export class ItemRepository implements CRUDRepository<ItemEntity, string, Item> 
 
   public async find(query?: GetItemsQuery) {
     const listsIds = query && query.listsIds ? query.listsIds : null;
+    const deadline = query && query.deadline ? query.deadline : null;
 
     return await this.itemModel
       .find()
-      .where(listsIds ? {listsIds: {$in: listsIds.split(',')}} : {});
+      .where(listsIds ? {listsIds: {$in: listsIds.split(',')}} : {})
+      .where(deadline ? {
+        deadline: {
+          $gte: `${deadline.slice(0, 11)}00:00:00.000Z`,
+          $lte: `${deadline.slice(0, 11)}23:59:59.999Z`
+        }
+      } : {});
   }
 
   public async findById(id: string): Promise<Item> {
